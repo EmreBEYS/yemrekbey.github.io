@@ -24,6 +24,12 @@ function CourseDetail() {
 
   const selectedWeek = course.weeks?.[selectedWeekIndex];
 
+  const resolvePublicFile = (filePath) => {
+    if (!filePath) return "#";
+    if (/^https?:\/\//i.test(filePath)) return filePath;
+    return `${import.meta.env.BASE_URL}${filePath.replace(/^\//, "")}`;
+  };
+
   return (
     <main className="page course-detail-page">
       <section className="course-hero-panel">
@@ -128,11 +134,11 @@ function CourseDetail() {
                         </div>
 
                         <div className="pdf-actions">
-                          <a href={pdf.file} target="_blank" rel="noopener noreferrer">
+                          <a href={resolvePublicFile(pdf.file)} target="_blank" rel="noopener noreferrer">
                             Görüntüle
                           </a>
 
-                          <a href={pdf.file} download>
+                          <a href={resolvePublicFile(pdf.file)} download>
                             İndir
                           </a>
                         </div>

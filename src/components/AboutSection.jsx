@@ -21,8 +21,9 @@ function AboutSection() {
         >
           <div className="about-avatar">
           <img
-            src="/images/profile.jpeg"
+            src={`${import.meta.env.BASE_URL}images/profile.jpeg`}
               alt="Yunus Emre KUL"
+            onError={(event) => { event.currentTarget.style.display = "none"; }}
           />
           </div>
           <span className="availability-badge"><i /> Yeni projelere açık</span>
